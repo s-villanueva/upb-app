@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@color/backgroundDefault"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_upb"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGrades"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorOnPrimary"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        android:gravity="center"
+        android:text="Notas"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/btnSchedule"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintWidth_percent="0.42" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSchedule"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:backgroundTint="@color/colorSecondary"
+        android:textColor="@color/colorOnSecondary"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        android:gravity="center"
+        android:text="Horario"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGrades"
+        app:layout_constraintTop_toTopOf="@id/btnGrades"
+        app:layout_constraintWidth_percent="0.42" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBuses"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorThird"
+        android:textColor="@color/colorOnThird"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        android:gravity="center"
+        android:text="Buses"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/btnClassroom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGrades"
+        app:layout_constraintWidth_percent="0.42" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnClassroom"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorOnPrimary"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        android:gravity="center"
+        android:text="Buscador de Aulas"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnBuses"
+        app:layout_constraintTop_toTopOf="@id/btnBuses"
+        app:layout_constraintWidth_percent="0.42" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAccount"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:text="Estado de Cuenta"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorOnPrimary"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        app:cornerRadius="12dp"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/btnBuses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnReserve"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.42"
+        android:layout_marginTop="16dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReserve"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:text="Reserva de Salas de Estudio"
+        android:backgroundTint="@color/colorSecondary"
+        android:textColor="@color/colorOnSecondary"
+        app:strokeColor="@color/shape"
+        app:strokeWidth="2dp"
+        app:cornerRadius="12dp"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="@id/btnAccount"
+        app:layout_constraintStart_toEndOf="@id/btnAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintWidth_percent="0.42" />
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/nav_bar_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:text="🏠\nMenu"
+            android:layout_weight="1"
+            android:textColor="#FFD700"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/botonL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="🏆\nLogros"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/botonP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="👤\nPerfil"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
