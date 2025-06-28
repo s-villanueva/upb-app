@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Línea exterior del trofeo -->
+    <path
+        android:strokeColor="#fff"
+        android:strokeWidth="5"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M30,20
+            h40
+            a20,30 0 0 1 -15,40
+            v5
+            h10
+            v10
+            h-30
+            v-10
+            h10
+            v-5
+            a20,30 0 0 1 -15,-40
+            z" />
+
+    <!-- Asa izquierda -->
+    <path
+        android:strokeColor="#fff"
+        android:strokeWidth="5"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M30,25
+            h-10
+            a10,10 0 0 0 10,20" />
+
+    <!-- Asa derecha -->
+    <path
+        android:strokeColor="#fff"
+        android:strokeWidth="5"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="
+            M70,25
+            h10
+            a10,10 0 0 1 -10,20" />
+</vector>

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_layout_studyroom"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout_studyroom"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".StudyRoomFragment">
 
     <!-- Contenedor scrollable si el contenido crece -->
     <ScrollView
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/footer"
+        android:layout_above="@id/bottom_nav"
         android:layout_alignParentTop="true"
         android:fillViewport="true">
 
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:paddingBottom="60dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,14 +63,14 @@
                     android:id="@+id/fecha"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:autofillHints=""
                     android:textColor="@color/textDefault"
-                    android:layout_height="48dp"
-                    android:background="@drawable/back_rounded"
                     android:text="01/01/2025"
                     android:enabled="false"
                     android:gravity="center"
                     android:inputType="date"
+                    android:background="@drawable/back_rounded"
                     tools:ignore="LabelFor" />
             </LinearLayout>
 
@@ -150,13 +151,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:textColor="@color/textDefault"
-
                     android:gravity="center"
                     android:layout_marginTop="10dp"
                     android:tag="Room"
                     android:entries="@array/room_options"
                     android:background="@drawable/back_rounded" />
             </LinearLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/reservarSala"
                 android:layout_width="match_parent"
@@ -171,61 +172,16 @@
                 android:layout_marginEnd="20dp"
                 android:text="Reservar Sala" />
         </LinearLayout>
-
     </ScrollView>
 
-    <!-- FOOTER FIJO ABAJO -->
-    <LinearLayout
-        android:id="@+id/footer"
-        style="?android:attr/buttonBarStyle"
+    <!-- BOTTOM NAVIGATION BAR -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/nav_bar_bg"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="🏠\nMenu"
-            android:textAlignment="center"
-            android:textColor="#FFFF"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/botonL"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="🏆\nLogros"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/botonP"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="👤\nPerfil"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-    </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        app:menu="@menu/menu_main" />
 
 </RelativeLayout>
