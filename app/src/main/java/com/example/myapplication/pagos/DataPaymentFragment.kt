@@ -1,11 +1,15 @@
-package com.example.myapplication
+package com.example.myapplication.pagos
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 
 class DataPaymentFragment : Fragment() {
 
@@ -20,10 +24,10 @@ class DataPaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnElegirMetodoPago = view.findViewById<Button>(R.id.pay_button)
-        val numeroDoc = view.findViewById<android.widget.EditText>(R.id.numero_documento)
-        val confirmacionDoc = view.findViewById<android.widget.EditText>(R.id.confirmacion_documento)
-        val correo = view.findViewById<android.widget.EditText>(R.id.correo_electronico)
-        val confirmacionCorreo = view.findViewById<android.widget.EditText>(R.id.confirmacion_correo_electronico)
+        val numeroDoc = view.findViewById<EditText>(R.id.numero_documento)
+        val confirmacionDoc = view.findViewById<EditText>(R.id.confirmacion_documento)
+        val correo = view.findViewById<EditText>(R.id.correo_electronico)
+        val confirmacionCorreo = view.findViewById<EditText>(R.id.confirmacion_correo_electronico)
 
         btnElegirMetodoPago.setOnClickListener {
             val doc = numeroDoc.text.toString().trim()
@@ -33,16 +37,16 @@ class DataPaymentFragment : Fragment() {
 
             when {
                 doc.isEmpty() || docConfirm.isEmpty() || email.isEmpty() || emailConfirm.isEmpty() -> {
-                    android.widget.Toast.makeText(requireContext(), "Completa todos los campos", android.widget.Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show()
                 }
                 doc != docConfirm -> {
-                    android.widget.Toast.makeText(requireContext(), "Los números de documento no coinciden", android.widget.Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Los números de documento no coinciden", Toast.LENGTH_SHORT).show()
                 }
                 email != emailConfirm -> {
-                    android.widget.Toast.makeText(requireContext(), "Los correos no coinciden", android.widget.Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Los correos no coinciden", Toast.LENGTH_SHORT).show()
                 }
-                !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                    android.widget.Toast.makeText(requireContext(), "El correo ingresado no es válido", android.widget.Toast.LENGTH_SHORT).show()
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    Toast.makeText(requireContext(), "El correo ingresado no es válido", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
                     parentFragmentManager.beginTransaction()

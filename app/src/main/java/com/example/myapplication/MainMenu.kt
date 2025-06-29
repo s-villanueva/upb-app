@@ -12,6 +12,7 @@ import com.example.myapplication.buscarAula.BuscarAulaFragment
 import com.example.myapplication.buses.ListBusesFragment
 import com.example.myapplication.horarios.SchedulesFragment
 import com.example.myapplication.notas.GradesFragment
+import com.example.myapplication.pagos.AccountFragment
 import com.example.myapplication.salaEstudio.StudyRoomFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

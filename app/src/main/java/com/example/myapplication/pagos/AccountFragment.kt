@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.pagos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.network.RetrofitServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class AccountFragment : Fragment() {
 
@@ -59,24 +59,28 @@ class AccountFragment : Fragment() {
             val response = retrofitService.getEstadoCuenta(codigo)
             val estado = response.estado_cuenta
 
-                withContext(Dispatchers.Main) {
-                    val montoTotal = estado.sumOf { it.Importe_Pagar }
-                    val montoPagado = estado.sumOf { it.Importe_Pagado }
-                    val montoPendiente = estado.sumOf { it.Importe_Por_Pagar }
+            withContext(Dispatchers.Main) {
+                val montoTotal = estado.sumOf { it.Importe_Pagar }
+                val montoPagado = estado.sumOf { it.Importe_Pagado }
+                val montoPendiente = estado.sumOf { it.Importe_Por_Pagar }
 
-                    montoTotalTextView.text = "$$montoTotal"
-                    montoPagadoTextView.text = "$$montoPagado"
-                    montoPendienteTextView.text = "$$montoPendiente"
+                montoTotalTextView.text = "$$montoTotal"
+                montoPagadoTextView.text = "$$montoPagado"
+                montoPendienteTextView.text = "$$montoPendiente"
 
-                    recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                    recyclerView.adapter = PaymentAdapter(estado.map {
-                        PaymentItem(it.Concepto, it.Importe_Pagado.toString())
-                    })
-                }
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = PaymentAdapter(estado.map {
+                    PaymentItem(it.Concepto, it.Importe_Pagado.toString())
+                })
+            }
 //            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(requireContext(), "Error al cargar estado de cuenta", Toast.LENGTH_SHORT).show()
-                }
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    requireContext(),
+                    "Error al cargar estado de cuenta",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 //            }
         }
     }
