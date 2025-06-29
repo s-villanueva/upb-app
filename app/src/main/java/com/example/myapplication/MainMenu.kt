@@ -79,6 +79,18 @@ class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
                     addToBackStack(null)
                 }
             }
+            R.id.btnGrades -> {
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, GradesFragment())
+                    addToBackStack(null)
+                }
+            }
+            R.id.btnBuses -> {
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, ListBusesFragment())
+                    addToBackStack(null)
+                }
+            }
         }
     }
 }

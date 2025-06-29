@@ -154,7 +154,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resumen de Pagos"
+            android:text="Total Abonos"
             android:textSize="26sp"
             android:textStyle="bold"
             android:paddingStart="20dp"

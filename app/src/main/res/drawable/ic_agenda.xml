@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Marco del calendario -->
+    <path
+        android:fillColor="#FF8107"
+        android:pathData="M3,4h18a1,1 0 0 1 1,1v14a2,2 0 0 1 -2,2H4a2,2 0 0 1 -2,-2V5a1,1 0 0 1 1,-1z" />
+
+    <!-- Cabecera del calendario -->
+    <path
+        android:fillColor="#000"
+        android:pathData="M3,4h18v4H3z" />
+
+    <!-- Argollas -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M7,2a1,1 0 0 1 1,1v2a1,1 0 0 1 -2,0V3a1,1 0 0 1 1,-1z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M17,2a1,1 0 0 1 1,1v2a1,1 0 0 1 -2,0V3a1,1 0 0 1 1,-1z" />
+
+    <!-- Cuadrícula de fechas -->
+    <path android:fillColor="#FFFFFF" android:pathData="M5,10h2v2H5z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M9,10h2v2H9z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M13,10h2v2h-2z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M17,10h2v2h-2z" />
+
+    <path android:fillColor="#FFFFFF" android:pathData="M5,14h2v2H5z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M9,14h2v2H9z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M13,14h2v2h-2z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M17,14h2v2h-2z" />
+
+</vector>

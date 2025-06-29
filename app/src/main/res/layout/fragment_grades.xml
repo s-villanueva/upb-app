@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/list_buses_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ListBusesFragment">
-
-
+    android:background="@color/backgroundDefault"
+    android:id="@+id/grades"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buses"
+        android:text="Notas"
         android:textSize="30sp"
         android:textStyle="bold"
         android:paddingStart="20dp"
@@ -25,12 +21,10 @@
         android:textColor="@android:color/white"
         android:textAlignment="viewStart"/>
 
-    <!-- Lista de rutas -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewRoutes"
+        android:id="@+id/recyclerGrades"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="24dp" />
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

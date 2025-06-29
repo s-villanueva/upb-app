@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +38,21 @@ class SchedulesFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_schedules, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.subjectRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val scheduleList = listOf(
+            ScheduleItem("Base de Datos Relacionales", "02/04/25 - 03/05/25", "10:00 - 12:00", "Aula A1", "RODRIGUEZ ZEGADA JOSE"),
+            ScheduleItem("Programación Avanzada", "05/04/25 - 06/05/25", "14:00 - 16:00", "Aula B3", "GARCÍA PEREZ MARÍA")
+        )
+
+        recyclerView.adapter = ScheduleAdapter(scheduleList)
+    }
+
 
     companion object {
         /**
