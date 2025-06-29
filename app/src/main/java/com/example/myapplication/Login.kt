@@ -51,12 +51,22 @@ class Login : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = retrofitService.login(request)
+
                     runOnUiThread {
                         Toast.makeText(this@Login, response.message, Toast.LENGTH_SHORT).show()
                         if (response.usuario != null) {
                             val intent = Intent(this@Login, MainMenu::class.java)
                             // Puedes enviar datos aquí si quieres pasarlos al menú
                             startActivity(intent)
+                        }
+                        val usuario = response.usuario
+                        val sharedPref = getSharedPreferences("UserData", MODE_PRIVATE)
+                        with(sharedPref.edit()) {
+                            putString("codigo", usuario?.codigo.toString())
+                            putString("nombres", usuario?.nombres)
+                            putString("apellidos", usuario?.apellidos)
+                            putString("correo", usuario?.correo)
+                            apply()
                         }
                     }
                 } catch (e: Exception) {

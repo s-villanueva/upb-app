@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -16,13 +18,25 @@ class ProfileFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        // 👉 Aplica los insets al ScrollView
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.main_content)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(0, 0, 0, systemBars.bottom)  // Solo padding inferior
-            insets
-        }
+        // Obtener SharedPreferences
+        val sharedPref = requireContext().getSharedPreferences("UserData", AppCompatActivity.MODE_PRIVATE)
+
+        val codigo = sharedPref.getString("codigo", "")
+        val nombres = sharedPref.getString("nombres", "")
+        val apellidos = sharedPref.getString("apellidos", "")
+        val correo = sharedPref.getString("correo", "")
+
+        // Buscar y asignar a los TextViews
+        view.findViewById<TextView>(R.id.name).text = "$nombres $apellidos"
+        view.findViewById<TextView>(R.id.student_id).text = codigo
+        view.findViewById<TextView>(R.id.email).text = correo
+
+        // Otros campos que aún no llegan del backend
+        view.findViewById<TextView>(R.id.carrera).text = "Ingeniería"
+        view.findViewById<TextView>(R.id.phone).text = "No definido"
+        view.findViewById<TextView>(R.id.address).text = "No definido"
 
         return view
     }
+
 }
