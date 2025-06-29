@@ -5,52 +5,79 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.network.RetrofitServiceFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class AccountFragment : Fragment() {
 
+    private lateinit var montoTotalTextView: TextView
+    private lateinit var montoPagadoTextView: TextView
+    private lateinit var montoPendienteTextView: TextView
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // 🔢 Montos (ejemplo fijo)
-        val montoTotal = 6500
-        val montoPagado = 1800
-        val montoPendiente = montoTotal - montoPagado
+        super.onViewCreated(view, savedInstanceState)
 
-        // Actualizar TextViews
-        view.findViewById<TextView>(R.id.monto_total).text = "$${montoTotal}"
-        view.findViewById<TextView>(R.id.monto_pagado).text = "$${montoPagado}"
-        view.findViewById<TextView>(R.id.monto_pendiente).text = "$${montoPendiente}"
+        // Referencias a vistas
+        montoTotalTextView = view.findViewById(R.id.monto_total)
+        montoPagadoTextView = view.findViewById(R.id.monto_pagado)
+        montoPendienteTextView = view.findViewById(R.id.monto_pendiente)
+        recyclerView = view.findViewById(R.id.payment_list)
 
-        // Lista de pagos
-        val paymentList = listOf(
-            PaymentItem("10/02/2025", "1,300.00"),
-            PaymentItem("10/03/2025", "1,300.00"),
-            PaymentItem("10/04/2025", "1,300.00"),
-            PaymentItem("10/05/2025", "1,300.00"),
-            PaymentItem("10/06/2025", "1,300.00")
-        )
+        // Código de usuario desde SharedPreferences
+        val sharedPref = requireContext().getSharedPreferences("UserData", AppCompatActivity.MODE_PRIVATE)
+        val codigoUsuario = sharedPref.getString("codigo", null)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.payment_list)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = PaymentAdapter(paymentList)
-
-        val btnVerPagos = view.findViewById<View>(R.id.pay_button)
-        btnVerPagos.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DataPaymentFragment())
-                .addToBackStack(null)
-                .commit()
+        if (codigoUsuario != null) {
+            obtenerEstadoCuenta(codigoUsuario.toLong())
+        } else {
+            Toast.makeText(requireContext(), "No se encontró el código de usuario", Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun obtenerEstadoCuenta(codigo: Long) {
+        val retrofitService = RetrofitServiceFactory.makeRetrofitService()
 
+        CoroutineScope(Dispatchers.IO).launch {
+//            try {
+            val response = retrofitService.getEstadoCuenta(codigo)
+            val estado = response.estado_cuenta
+
+                withContext(Dispatchers.Main) {
+                    val montoTotal = estado.sumOf { it.Importe_Pagar }
+                    val montoPagado = estado.sumOf { it.Importe_Pagado }
+                    val montoPendiente = estado.sumOf { it.Importe_Por_Pagar }
+
+                    montoTotalTextView.text = "$$montoTotal"
+                    montoPagadoTextView.text = "$$montoPagado"
+                    montoPendienteTextView.text = "$$montoPendiente"
+
+                    recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                    recyclerView.adapter = PaymentAdapter(estado.map {
+                        PaymentItem(it.Concepto, it.Importe_Pagado.toString())
+                    })
+                }
+//            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error al cargar estado de cuenta", Toast.LENGTH_SHORT).show()
+                }
+//            }
+        }
+    }
 }
