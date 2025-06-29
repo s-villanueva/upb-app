@@ -6,7 +6,7 @@
     android:id="@+id/profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".perfil.ProfileFragment">
 
     <!-- Scroll para permitir desplazamiento si el contenido es largo -->
     <ScrollView

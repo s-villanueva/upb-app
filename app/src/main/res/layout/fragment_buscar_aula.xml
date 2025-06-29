@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/txtBuscarAulaTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buscar Aula"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="#02165b"
+                android:textColor="@android:color/white"
+                android:textAlignment="viewStart" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!-- Spinner o EditText para buscar aula -->
+        <EditText
+            android:id="@+id/etBuscarAula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese el código del aula"
+            android:inputType="text"
+            android:layout_marginTop="20dp" />
+
+        <!-- Vista simulada del mapa -->
+        <ImageView
+            android:id="@+id/MapaSimulado"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:background="#cccccc"
+            android:layout_marginTop="20dp" />
+
+        <!-- Botón para calcular la ruta -->
+        <Button
+            android:id="@+id/btnCalcularRuta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorSecondary"
+            android:text="Buscar Aula"
+            app:strokeColor="@android:color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <!-- Indicaciones de cómo llegar -->
+        <TextView
+            android:id="@+id/txtIndicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

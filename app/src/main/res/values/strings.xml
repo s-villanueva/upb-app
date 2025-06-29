@@ -4,9 +4,10 @@
     <string name="password">Contraseña</string>
     <string name="login">Inicio de Sesión</string>
     <string-array name="room_options">
-        <item>Room 1</item>
-        <item>Room 2</item>
-        <item>Room 3</item>
+        <item>Sala B</item>
+        <item>Sala C</item>
+        <item>Sala D</item>
+        <item>Sala E</item>
     </string-array>
     <string-array name="lista_documentos">
         <item>CARNET DE IDENTIDAD</item>

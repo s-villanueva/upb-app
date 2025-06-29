@@ -5,7 +5,7 @@
     android:id="@+id/main_layout_studyroom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudyRoomFragment">
+    tools:context=".salaEstudio.StudyRoomFragment">
 
     <!-- Contenedor scrollable si el contenido crece -->
     <ScrollView
@@ -139,6 +139,7 @@
                     android:layout_marginStart="20dp"
                     android:text="Sala" />
                 <Spinner
+                    android:id="@+id/salasSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:textColor="@color/textDefault"
@@ -148,6 +149,14 @@
                     android:entries="@array/room_options"
                     android:background="@drawable/back_rounded" />
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horariosRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp" />
+
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/reservarSala"

@@ -1,12 +1,13 @@
-package com.example.myapplication
+package com.example.myapplication.horarios
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,7 +15,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [androidx.fragment.app.Fragment] subclass.
  * Use the [SchedulesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -46,8 +47,20 @@ class SchedulesFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val scheduleList = listOf(
-            ScheduleItem("Base de Datos Relacionales", "02/04/25 - 03/05/25", "10:00 - 12:00", "Aula A1", "RODRIGUEZ ZEGADA JOSE"),
-            ScheduleItem("Programación Avanzada", "05/04/25 - 06/05/25", "14:00 - 16:00", "Aula B3", "GARCÍA PEREZ MARÍA")
+            ScheduleItem(
+                "Base de Datos Relacionales",
+                "02/04/25 - 03/05/25",
+                "10:00 - 12:00",
+                "Aula A1",
+                "RODRIGUEZ ZEGADA JOSE"
+            ),
+            ScheduleItem(
+                "Programación Avanzada",
+                "05/04/25 - 06/05/25",
+                "14:00 - 16:00",
+                "Aula B3",
+                "GARCÍA PEREZ MARÍA"
+            )
         )
 
         recyclerView.adapter = ScheduleAdapter(scheduleList)

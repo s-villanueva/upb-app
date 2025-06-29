@@ -7,7 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
-import com.example.myapplication.ProfileFragment
+import com.example.myapplication.perfil.ProfileFragment
+import com.example.myapplication.buscarAula.BuscarAulaFragment
+import com.example.myapplication.buses.ListBusesFragment
+import com.example.myapplication.horarios.SchedulesFragment
+import com.example.myapplication.notas.GradesFragment
+import com.example.myapplication.salaEstudio.StudyRoomFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
@@ -88,6 +93,12 @@ class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
             R.id.btnBuses -> {
                 supportFragmentManager.commit {
                     replace(R.id.fragment_container, ListBusesFragment())
+                    addToBackStack(null)
+                }
+            }
+            R.id.btnClassroom -> {
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, BuscarAulaFragment())
                     addToBackStack(null)
                 }
             }

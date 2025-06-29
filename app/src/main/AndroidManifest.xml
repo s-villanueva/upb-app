@@ -27,12 +27,12 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".StudyRoomFragment"
+            android:name=".salaEstudio.StudyRoomFragment"
             android:exported="false"
             tools:ignore="Instantiatable">
         </activity>
         <activity
-            android:name=".SchedulesFragment"
+            android:name=".horarios.SchedulesFragment"
             android:exported = "false"
             tools:ignore="Instantiatable">
         </activity>

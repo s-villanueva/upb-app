@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.notas
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.notas.GradesViewModel
+import com.example.myapplication.R
 
 class GradesFragment : Fragment() {
 
