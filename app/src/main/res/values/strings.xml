@@ -8,4 +8,11 @@
         <item>Room 2</item>
         <item>Room 3</item>
     </string-array>
+    <string-array name="lista_documentos">
+        <item>CARNET DE IDENTIDAD</item>
+        <item>CARNET DE IDENTIDAD DE EXTRANJEROS</item>
+        <item>PASAPORTE</item>
+        <item>OTRO DOCUMENTO DE IDENTIDAD</item>
+        <item>NIT - NUMERO DE IDENTIFICACION TRIBUTARIA</item>
+    </string-array>
 </resources>

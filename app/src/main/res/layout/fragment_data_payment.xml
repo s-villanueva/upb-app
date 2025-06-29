@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título principal -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Datos Para la Facturación"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="#02165b"
+            android:textColor="@android:color/white"
+            android:textAlignment="viewStart"/>
+
+        <!-- Card principal con monto -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#e2e2e6">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monto a Pagar"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/montoPagar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="$4,700"
+                    android:autofillHints=""
+                    android:textColorHint="#7e7e8a"
+                    android:textSize="32sp"
+                    android:textColor="#0000CC"
+                    android:textStyle="bold"
+                    android:background="@null"
+                    android:padding="8dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de documento"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/textFactura"
+             />
+
+        <Spinner
+            android:id="@+id/spinner_document_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/lista_documentos"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero de Documento"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/textFactura"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/numero_documento"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:autofillHints=""
+                    android:background="@drawable/back_rounded"
+                    android:gravity="center"
+                    android:hint="Numero de Documento"
+                    android:textSize="16sp"
+                    android:textColor="@color/textDefault"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/confirmacion_documento"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:textColor="@color/textDefault"
+                    android:hint="Vuelva a Ingresar el Nro de Documento"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:background="@drawable/back_rounded"
+                    android:layout_marginStart="10dp"
+                    android:inputType="number"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complemento Carnet de Identidad"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/textFactura"
+            />
+        <EditText
+            android:id="@+id/complemento_ci"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints=""
+            android:background="@drawable/back_rounded"
+            android:gravity="center"
+            android:hint="Complemento"
+            android:textSize="16sp"
+            android:textColor="@color/textDefault" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Factura"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/textFactura"
+            />
+        <EditText
+            android:id="@+id/nombre_factura"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints=""
+            android:background="@drawable/back_rounded"
+            android:gravity="center"
+            android:hint="Nombre para la Factura"
+            android:textSize="16sp"
+            android:textColor="@color/textDefault" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correo Electrónico"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/textFactura"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/correo_electronico"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:autofillHints=""
+                    android:background="@drawable/back_rounded"
+                    android:gravity="center"
+                    android:hint="Correo Electrónico"
+                    android:textSize="16sp"
+                    android:textColor="@color/textDefault"
+                    android:inputType="textEmailAddress"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/confirmacion_correo_electronico"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:textColor="@color/textDefault"
+                    android:hint="Vuelva a Ingresar el Correo"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:background="@drawable/back_rounded"
+                    android:layout_marginStart="10dp"
+                    android:inputType="textEmailAddress"/>/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Resumen de Total, Paid, Remaining -->
+                <Button
+            android:id="@+id/pay_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Elegir Metodo de Pago"
+            android:backgroundTint="@color/colorSecondary"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:strokeColor="@android:color/black"
+            app:strokeWidth="2dp"/>
+    </LinearLayout>
+</ScrollView>

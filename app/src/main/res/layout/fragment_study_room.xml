@@ -12,7 +12,6 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_nav"
         android:layout_alignParentTop="true"
         android:fillViewport="true">
 
@@ -22,27 +21,20 @@
             android:orientation="vertical"
             android:paddingBottom="60dp">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_gravity="start"
-                    android:src="@drawable/logo_upb" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="@color/textDefault"
-                android:text="Reserva de Salas de Estudio"
-                android:textSize="30dp"
-                android:layout_gravity="start" />
+                android:text="Reservar Sala de Estudio"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="#02165b"
+                android:textColor="@android:color/white"
+                android:textAlignment="viewStart"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +58,6 @@
                     android:layout_height="48dp"
                     android:autofillHints=""
                     android:textColor="@color/textDefault"
-                    android:text="01/01/2025"
                     android:enabled="false"
                     android:gravity="center"
                     android:inputType="date"
@@ -103,7 +94,7 @@
                         android:background="@drawable/back_rounded"
                         android:gravity="center"
                         android:hint="12:00"
-                        android:inputType="number"
+                        android:inputType="time"
                         android:textColor="@color/textDefault" />
                 </LinearLayout>
 
@@ -128,7 +119,7 @@
                         android:hint="14:00"
                         android:gravity="center"
                         android:background="@drawable/back_rounded"
-                        android:inputType="datetime"
+                        android:inputType="time"
                         android:layout_marginStart="10dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -174,14 +165,5 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- BOTTOM NAVIGATION BAR -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        app:menu="@menu/menu_main" />
 
 </RelativeLayout>

@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +39,20 @@ class StudyRoomFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_study_room, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fechaEditText = view.findViewById<android.widget.EditText>(R.id.fecha)
+
+        // Formato de fecha deseado: dd/MM/yyyy
+        val formatoFecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val fechaActual = formatoFecha.format(Date())
+
+        // Asignar la fecha actual al EditText
+        fechaEditText.setText(fechaActual)
+    }
+
 
     companion object {
         /**

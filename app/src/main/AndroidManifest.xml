@@ -25,13 +25,16 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".StudyRoom"
-            android:exported="false">
+            android:name=".StudyRoomFragment"
+            android:exported="false"
+            tools:ignore="Instantiatable">
         </activity>
         <activity
-            android:name=".Schedules"
-            android:exported = "false">
+            android:name=".SchedulesFragment"
+            android:exported = "false"
+            tools:ignore="Instantiatable">
         </activity>
+
 <!--        <activity android:name=".ListBuses"-->
 <!--            android:exported="false">-->
 

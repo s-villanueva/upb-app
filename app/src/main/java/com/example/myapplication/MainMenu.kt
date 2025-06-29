@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
+import com.example.myapplication.ProfileFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
 
@@ -14,6 +16,33 @@ class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.main_menu)
+
+        // Navegación del BottomNavigationView
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, HomeFragment.newInstance("", ""))
+                    }
+                    true
+                }
+                R.id.achievementsFragment -> {
+                    Toast.makeText(this, "Sección de logros próximamente disponible", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.profileFragment -> {
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, ProfileFragment())
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         // Mostrar HomeFragment por defecto
         if (savedInstanceState == null) {
@@ -30,7 +59,6 @@ class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
         }
     }
 
-    // Implementación de la interfaz de HomeFragment para manejar clics en botones
     override fun onButtonClicked(id: Int) {
         when (id) {
             R.id.btnReserve -> {
@@ -45,8 +73,11 @@ class MainMenu : AppCompatActivity(), HomeFragment.OnHomeButtonClickListener {
                     addToBackStack(null)
                 }
             }
-            else -> {
-                // Opcional: manejar otros botones o default
+            R.id.btnAccount -> {
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, AccountFragment())
+                    addToBackStack(null)
+                }
             }
         }
     }

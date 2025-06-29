@@ -11,4 +11,5 @@
 
     <color name="backgroundDefault">#121212</color>
     <color name="textDefault">#FFFFFF</color>
+    <color name="textFactura">#FFFFFF</color>
 </resources>
