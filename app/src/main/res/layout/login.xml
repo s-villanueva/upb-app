@@ -26,6 +26,7 @@
         android:paddingVertical="35dp">
 
         <EditText
+            android:id="@+id/etCodigo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:autofillHints=""
@@ -38,6 +39,7 @@
             android:hint="@string/code" />
 
         <EditText
+            android:id="@+id/etContrasena"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="25dp"
