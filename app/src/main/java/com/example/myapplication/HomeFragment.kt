@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlin.apply
 import kotlin.let
 
@@ -45,7 +47,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-
+        val sharedPref = requireContext().getSharedPreferences("UserData", AppCompatActivity.MODE_PRIVATE)
+        val nombres = sharedPref.getString("nombres", "")
+        val welcome = view.findViewById<TextView>(R.id.welcomeText)
+        welcome.text = "Bienvenido: " + nombres.toString()
         // Referencia a botones desde el layout
         val btnReserve = view.findViewById<Button>(R.id.btnReserve)
         val btnSchedule = view.findViewById<Button>(R.id.btnSchedule)
