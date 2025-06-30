@@ -3,8 +3,11 @@ package com.example.myapplication.network
 
 import com.example.myapplication.model.EstadoCuentaItem
 import com.example.myapplication.model.EstadoCuentaResponse
+import com.example.myapplication.model.HorariosResponse
 import com.example.myapplication.model.RespuestaLogin
 import com.example.myapplication.model.LoginRequest
+import com.example.myapplication.model.MateriaHorario
+import com.example.myapplication.model.NotaResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.Retrofit
@@ -20,6 +23,10 @@ interface RetrofitService {
     suspend fun login(@Body request: LoginRequest): RespuestaLogin
     @GET("api/estado-cuenta/{codigo}")
     suspend fun getEstadoCuenta(@Path("codigo") codigo: Long): EstadoCuentaResponse
+    @GET("api/horarios/{codigo}")
+    suspend fun getHorarios(@Path("codigo") codigo: Long): HorariosResponse
+    @GET("api/notas/{codigo}")
+    suspend fun getNotas(@Path("codigo") codigo: Long): List<NotaResponse>
 }
 
 object RetrofitServiceFactory {

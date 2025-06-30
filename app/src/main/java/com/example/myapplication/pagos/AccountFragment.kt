@@ -16,12 +16,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 class AccountFragment : Fragment() {
 
     private lateinit var montoTotalTextView: TextView
     private lateinit var montoPagadoTextView: TextView
     private lateinit var montoPendienteTextView: TextView
+    private lateinit var montoPagadoBig : TextView
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -39,7 +41,7 @@ class AccountFragment : Fragment() {
         montoPagadoTextView = view.findViewById(R.id.monto_pagado)
         montoPendienteTextView = view.findViewById(R.id.monto_pendiente)
         recyclerView = view.findViewById(R.id.payment_list)
-
+        montoPagadoBig = view.findViewById(R.id.amount_due)
         // Código de usuario desde SharedPreferences
         val sharedPref = requireContext().getSharedPreferences("UserData", AppCompatActivity.MODE_PRIVATE)
         val codigoUsuario = sharedPref.getString("codigo", null)
@@ -49,13 +51,21 @@ class AccountFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "No se encontró el código de usuario", Toast.LENGTH_SHORT).show()
         }
+
+        val btnVerPagos = view.findViewById<View>(R.id.pay_button)
+        btnVerPagos.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, DataPaymentFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun obtenerEstadoCuenta(codigo: Long) {
         val retrofitService = RetrofitServiceFactory.makeRetrofitService()
 
         CoroutineScope(Dispatchers.IO).launch {
-//            try {
+            try {
             val response = retrofitService.getEstadoCuenta(codigo)
             val estado = response.estado_cuenta
 
@@ -64,16 +74,26 @@ class AccountFragment : Fragment() {
                 val montoPagado = estado.sumOf { it.Importe_Pagado }
                 val montoPendiente = estado.sumOf { it.Importe_Por_Pagar }
 
-                montoTotalTextView.text = "$$montoTotal"
-                montoPagadoTextView.text = "$$montoPagado"
-                montoPendienteTextView.text = "$$montoPendiente"
+                montoTotalTextView.text = "Bs.$montoTotal"
+                montoPagadoTextView.text = "Bs.$montoPagado"
+                montoPendienteTextView.text = "Bs.$montoPendiente"
+                montoPagadoBig.text = "Bs.$montoPagado"
 
+                val cuotaMensual = montoPendiente / 5
+                val listaPlanPagos = mutableListOf<PaymentItem>()
+
+                for (i in 1..5) {
+                    val concepto = "Cuota Mes $i"
+                    val monto = "Bs. %.2f".format(cuotaMensual)
+                    listaPlanPagos.add(PaymentItem(concepto, monto))
+                }
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = PaymentAdapter(estado.map {
-                    PaymentItem(it.Concepto, it.Importe_Pagado.toString())
-                })
+                recyclerView.adapter = PaymentAdapter(listaPlanPagos)
+
+
+
             }
-//            } catch (e: Exception) {
+            } catch (e: Exception) {
             withContext(Dispatchers.Main) {
                 Toast.makeText(
                     requireContext(),
@@ -81,7 +101,7 @@ class AccountFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-//            }
+            }
         }
     }
 }

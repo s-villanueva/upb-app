@@ -54,7 +54,7 @@
                     android:id="@+id/montoPagar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="$4,700"
+                    android:hint="$10500.0"
                     android:autofillHints=""
                     android:textColorHint="#7e7e8a"
                     android:textSize="32sp"

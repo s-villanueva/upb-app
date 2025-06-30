@@ -4,10 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.network.RetrofitServiceFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,25 +54,36 @@ class SchedulesFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.subjectRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val scheduleList = listOf(
-            ScheduleItem(
-                "Base de Datos Relacionales",
-                "02/04/25 - 03/05/25",
-                "10:00 - 12:00",
-                "Aula A1",
-                "RODRIGUEZ ZEGADA JOSE"
-            ),
-            ScheduleItem(
-                "Programación Avanzada",
-                "05/04/25 - 06/05/25",
-                "14:00 - 16:00",
-                "Aula B3",
-                "GARCÍA PEREZ MARÍA"
-            )
-        )
+        val codigoUsuario = requireContext().getSharedPreferences("UserData", AppCompatActivity.MODE_PRIVATE)
+            .getString("codigo", "")?.toLongOrNull() ?: return
 
-        recyclerView.adapter = ScheduleAdapter(scheduleList)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val retrofitService = RetrofitServiceFactory.makeRetrofitService()
+                val materias = retrofitService.getHorarios(codigoUsuario).horarios
+
+                val scheduleItems = materias.map {
+                    ScheduleItem(
+                        it.Nombre_Materia,
+                        "${it.Fecha_Inicio} - ${it.Fecha_Final}",
+                        it.Horario,
+                        it.Aula,
+                        it.Docente
+                    )
+                }
+
+                withContext(Dispatchers.Main) {
+                    recyclerView.adapter = ScheduleAdapter(scheduleItems)
+                }
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error al cargar horarios", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
+
 
 
     companion object {
